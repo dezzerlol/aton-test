@@ -9,8 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@mantine/core": "^6.0.7",
+    "@mantine/dates": "^6.0.7",
+    "@mantine/form": "^6.0.7",
+    "@mantine/hooks": "^6.0.7",
+    "@tabler/icons-react": "^2.15.0",
+    "axios": "^1.3.5",
+    "dayjs": "^1.11.7",
+    "mantine-react-table": "^1.0.0-beta.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.10.0"
   },
   "devDependencies": {

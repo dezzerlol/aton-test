@@ -1,14 +1,21 @@
-import Button from '@/components/Button/Button'
-import Input from '@/components/Input/Input'
-import React, { useState } from 'react'
+import { Button, Input } from '@mantine/core'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useLogin } from '../../api/auth'
 import styles from './styles.module.css'
 
 const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const { mutate } = useLogin()
 
-  const handleSubmit = () => {}
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!username || !password) return
+
+    mutate({ username, password })
+  }
 
   return (
     <div className={styles.auth_form_layout}>

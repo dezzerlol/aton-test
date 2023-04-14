@@ -7,7 +7,7 @@ import { getToken } from '@/lib/token'
 // used to redirect from login and register page if
 // user is authorized
 const PublicRoute = (props: any) => {
-  const token = getToken('AUTH_TOKEN')
+  const token = getToken()
 
   return token ? <Navigate to='/' replace /> : props.children
 }
@@ -16,9 +16,9 @@ const PublicRoute = (props: any) => {
 // used to redirect to login page if
 // user is NOT authorized
 const PrivateRoute = (props: any) => {
-  const token = getToken('AUTH_TOKEN')
+  const token = getToken()
 
-  return !token ? <Navigate to='/login' replace /> : <Outlet />
+  return !token ? <Navigate to='/login' replace /> : props.children
 }
 
 export const AppRoutes = () => {
