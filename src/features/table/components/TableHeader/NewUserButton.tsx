@@ -1,7 +1,8 @@
+import { NewUser } from '@/types'
 import { Box, Button, Group, Modal, NumberInput, Select, Text, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { useState } from 'react'
-import { NewUser, useCreateUser } from '../../api/users'
+import { useCreateUser } from '../../api/createUser'
 
 const NewUserButton = () => {
   const [isOpened, setIsOpened] = useState(false)

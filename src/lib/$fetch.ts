@@ -1,10 +1,8 @@
 import Axios from 'axios'
 
-const API_URL = 'https://reqres.in/api/'
 
-export const $fetch = Axios.create({
-  baseURL: API_URL,
-})
+
+export const $fetch = Axios.create()
 
 $fetch.interceptors.request.use(
   function (config) {

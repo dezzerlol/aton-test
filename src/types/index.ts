@@ -11,3 +11,6 @@ export type User = {
     title: string
   }
 }
+
+
+export type NewUser = Omit<User, 'id'>

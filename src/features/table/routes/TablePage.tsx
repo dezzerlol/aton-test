@@ -1,7 +1,7 @@
 import LayoutHeader from '@/components/Header/Header'
 import { Box, Container, Pagination, useMantineTheme } from '@mantine/core'
 import { useState } from 'react'
-import { useUsers } from '../api/users'
+import { useUsers } from '../api/getUser'
 import Table from '../components/Table/Table'
 import TableHeader from '../components/TableHeader/TableHeader'
 

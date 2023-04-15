@@ -1,16 +1,17 @@
 import { useToast } from '@/components/Toast/useToast'
+import { AUTH_API_URL } from '@/config'
 import { $fetch } from '@/lib/$fetch'
 import { setToken } from '@/lib/token'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 
 const login = async ({ username, password }: { username: string; password: string }) => {
-  const res = await $fetch.post('/login', { username, password })
+  const res = await $fetch.post(AUTH_API_URL + '/login', { username, password })
   return res.data
 }
 
 const signup = async ({ username, password }: { username: string; password: string }) => {
-  const res = await $fetch.post('/register', { username, password })
+  const res = await $fetch.post(AUTH_API_URL + '/register', { username, password })
   return res.data
 }
 
