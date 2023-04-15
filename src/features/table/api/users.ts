@@ -26,6 +26,11 @@ const createUser = async (body: NewUser) => {
   return res.data
 }
 
+const updateUser = async (body: User) => {
+  const res = await $fetch.put(API_URL + `/${body.id}`, { ...body })
+  return res.data
+}
+
 export const useUsers = (limit: number, skip: number) => {
   return useQuery(['get-users', skip], () => getUsers(limit, skip))
 }
@@ -54,4 +59,8 @@ export const useCreateUser = () => {
       show({ title: 'Ошибка', text: 'Произошла ошибка при создании пользователя', type: 'error' })
     },
   })
+}
+
+export const useUpdateUser = () => {
+  return useMutation
 }

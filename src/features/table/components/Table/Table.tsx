@@ -51,9 +51,11 @@ const Table = ({ users, isLoading, skip }: { users?: User[]; isLoading: boolean;
       },
       {
         accessorKey: 'company.name',
+        /* accessorFn: (row) => row.company.name, */
         header: 'Компания',
       },
       {
+        /* accessorFn: (row) => row.company.title, */
         accessorKey: 'company.title',
         header: 'Должность',
       },
@@ -62,6 +64,27 @@ const Table = ({ users, isLoading, skip }: { users?: User[]; isLoading: boolean;
   )
 
   const handleSaveRow: MantineReactTableProps<User>['onEditingRowSave'] = async ({ exitEditingMode, values, row }) => {
+    const prevUsers = queryClient.getQueryData(['get-users', skip]) as any
+
+    const newUsers = prevUsers.users.map((user: any) => {
+      if (user.id === row.getValue('id')) {
+        // destructure values and
+        // set new values for company or get old data
+        // because of nested
+        return {
+          ...values,
+          company: {
+            name: values['company.name'] || row.getValue('company.name'),
+            title: values['company.title'] || row.getValue('company.title'),
+          },
+        }
+      } else {
+        return user
+      }
+    })
+
+    queryClient.setQueryData(['get-users', skip], { ...prevUsers, users: newUsers })
+
     exitEditingMode()
   }
 
