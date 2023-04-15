@@ -1,7 +1,7 @@
 import { Button, Input } from '@mantine/core'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useLogin } from '../../api/auth'
+import { useLogin } from '../../api/login'
 import styles from './styles.module.css'
 
 const LoginForm = () => {

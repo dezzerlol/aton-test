@@ -1,23 +1,11 @@
-import React, { useEffect, useRef } from 'react'
+import { useTimeout } from '@/hooks/useTimeout'
+import { IconAlertTriangle, IconCircleCheck } from '@tabler/icons-react'
+import React from 'react'
 import styles from './styles.module.css'
 
-export const useTimeout = (callback: () => void, delay: number) => {
-  const savedCallback = useRef(callback)
-
-  // Remember the latest callback if it changes.=
-  useEffect(() => {
-    savedCallback.current = callback
-  }, [callback])
-
-  // Set up the timeout
-  useEffect(() => {
-    // Don't schedule if no delay is specified
-    if (delay === null) return
-
-    const id = setTimeout(() => savedCallback.current(), delay)
-
-    return () => clearTimeout(id)
-  }, [delay])
+const ToastIcons = {
+  success: <IconCircleCheck color='green' size='20px' />,
+  error: <IconAlertTriangle color='red' size='20px' />,
 }
 
 export const Toast = ({
@@ -38,7 +26,9 @@ export const Toast = ({
   return (
     <div className={styles.toast}>
       <div className={styles.toast_top}>
-        <div className={`${styles.toast_title} ${styles[type]}`}>{title}</div>
+        <div className={`${styles.toast_title} ${styles[type]}`}>
+          {ToastIcons[type]} <span>{title}</span>
+        </div>
         <button className={styles.action_icon} onClick={() => close()}>
           X
         </button>

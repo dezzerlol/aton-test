@@ -1,4 +1,5 @@
 import React, { createContext, useId, useMemo, useState } from 'react'
+import { Portal } from '../Portal/Portal'
 import styles from './styles.module.css'
 import { Toast } from './Toast'
 
@@ -17,7 +18,7 @@ export type ToastOptions = {
   type?: 'success' | 'error'
 }
 
-type ToastType = {
+type Toast = {
   id: string
   options: ToastOptions
 }
@@ -25,7 +26,7 @@ type ToastType = {
 export const ToastContext = createContext<null | any>(null)
 
 export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
-  const [toasts, setToasts] = useState<ToastType[]>([])
+  const [toasts, setToasts] = useState<Toast[]>([])
 
   const show = (options: ToastOptions) => setToasts((prev) => [...prev, { id: generateId(), options }])
 
@@ -37,19 +38,22 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
     <ToastContext.Provider value={contextValue}>
       {children}
 
-      {toasts.length > 0
-        ? toasts.map((toast) => (
-            <div className={styles.toast_container} key={toast.id}>
+      {toasts.length > 0 ? (
+        <Portal>
+          <div className={styles.toast_container}>
+            {toasts.map((toast) => (
               <Toast
+                key={toast.id}
                 close={() => close(toast.id)}
                 text={toast.options.text}
                 title={toast.options.title}
                 time={toast.options.time ?? CLOSE_TIME}
                 type={toast.options.type}
               />
-            </div>
-          ))
-        : null}
+            ))}
+          </div>
+        </Portal>
+      ) : null}
     </ToastContext.Provider>
   )
 }
