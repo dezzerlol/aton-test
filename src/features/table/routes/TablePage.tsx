@@ -1,5 +1,5 @@
 import LayoutHeader from '@/components/Header/Header'
-import { Box, Container, Pagination, useMantineTheme } from '@mantine/core'
+import { Box, Container, Pagination, useMantineColorScheme, useMantineTheme } from '@mantine/core'
 import { useState } from 'react'
 import { useUsers } from '../api/getUser'
 import Table from '../components/Table/Table'
@@ -9,9 +9,10 @@ const USERS_PER_PAGE = 10
 
 export const TablePage = () => {
   const theme = useMantineTheme()
+  const { colorScheme } = useMantineColorScheme()
   const [page, setPage] = useState(1)
 
-  // Из текущий страницы вычитаем 1, т.к. отсчет страниц начинается с 0 и умножаем на кол-во данных на одной странице
+  // Из текущей страницы вычитаем 1, т.к. отсчет страниц начинается с 0 и умножаем на кол-во данных на одной странице
   const skip = (page - 1) * USERS_PER_PAGE
   const { data, isLoading } = useUsers(USERS_PER_PAGE, skip)
 
@@ -22,8 +23,8 @@ export const TablePage = () => {
       fluid
       p={0}
       sx={{
-        background: theme.colors.gray[0],
-        height: '100%',
+        backgroundColor: colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+        minHeight: '100%',
       }}>
       <LayoutHeader />
       <Box p='md'>

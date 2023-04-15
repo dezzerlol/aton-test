@@ -7,7 +7,7 @@ import styles from './styles.module.css'
 const SignupForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const { mutate } = useSignup()
+  const { mutate, isLoading } = useSignup()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -23,7 +23,9 @@ const SignupForm = () => {
       <form className={styles.auth_form} onSubmit={handleSubmit}>
         <Input placeholder='Логин' type='text' onChange={(e) => setUsername(e.currentTarget.value)} />
         <Input placeholder='Пароль' type='password' onChange={(e) => setPassword(e.currentTarget.value)} />
-        <Button type='submit'>Отправить</Button>
+        <Button loading={isLoading} type='submit'>
+          Отправить
+        </Button>
       </form>
       <span>
         Уже зарегистрированы? <Link to='/login'>Войти</Link>

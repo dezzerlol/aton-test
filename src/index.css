@@ -8,7 +8,17 @@ body {
 }
 
 :root {
-  --primary-color: '#6C63FF';
+  --bg-color: #f8f9fa;
+  --secondary-bg-color: #ffffff;
+  --text-color: #000000;
+  --secondary-text-color: #868e96;
+}
+
+body[data-theme='dark'] {
+  --bg-color: #212121;
+  --secondary-bg-color: #2c2c2c;
+  --text-color: #ffffff;
+  --secondary-text-color: #aaaaaa;
 }
 
 /*

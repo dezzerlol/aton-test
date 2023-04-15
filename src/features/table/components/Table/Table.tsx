@@ -1,5 +1,5 @@
 import { User } from '@/types'
-import { ActionIcon, Box, Tooltip } from '@mantine/core'
+import { ActionIcon, Box, MantineProvider, Tooltip } from '@mantine/core'
 import { IconEdit, IconTrash } from '@tabler/icons-react'
 import { MantineReactTable, MantineReactTableProps, MRT_ColumnDef, MRT_Row } from 'mantine-react-table'
 import { useCallback, useMemo } from 'react'
@@ -89,40 +89,38 @@ const Table = ({ users, isLoading, skip }: { users?: User[]; isLoading: boolean;
   )
 
   return (
-    <div>
-      <MantineReactTable
-        columns={columns}
-        data={users ?? []}
-        state={{ isLoading, showProgressBars: isLoadingDelete || isLoadingUpdate, density: 'xl' }}
-        enableStickyHeader
-        mantineTableContainerProps={{ sx: { maxHeight: '600px' } }}
-        enableFullScreenToggle={false}
-        enablePagination={false}
-        enableDensityToggle={false}
-        enableEditing={true}
-        editingMode='modal'
-        onEditingRowSave={handleSaveRow}
-        displayColumnDefOptions={{
-          'mrt-row-actions': {
-            header: 'Действия',
-          },
-        }}
-        renderRowActions={({ row, table }) => (
-          <Box sx={{ display: 'flex', gap: '16px' }}>
-            <Tooltip withArrow position='left' label='Изменить'>
-              <ActionIcon onClick={() => table.setEditingRow(row)}>
-                <IconEdit />
-              </ActionIcon>
-            </Tooltip>
-            <Tooltip withArrow position='right' label='Удалить'>
-              <ActionIcon color='red' onClick={() => handleDeleteRow(row)}>
-                <IconTrash />
-              </ActionIcon>
-            </Tooltip>
-          </Box>
-        )}
-      />
-    </div>
+    <MantineReactTable
+      columns={columns}
+      data={users ?? []}
+      state={{ isLoading, showProgressBars: isLoadingDelete || isLoadingUpdate, density: 'xl' }}
+      enableStickyHeader
+      mantineTableContainerProps={{ sx: { maxHeight: '600px' } }}
+      enableFullScreenToggle={false}
+      enablePagination={false}
+      enableDensityToggle={false}
+      enableEditing={true}
+      editingMode='modal'
+      onEditingRowSave={handleSaveRow}
+      displayColumnDefOptions={{
+        'mrt-row-actions': {
+          header: 'Действия',
+        },
+      }}
+      renderRowActions={({ row, table }) => (
+        <Box sx={{ display: 'flex', gap: '16px' }}>
+          <Tooltip withArrow position='left' label='Изменить'>
+            <ActionIcon onClick={() => table.setEditingRow(row)}>
+              <IconEdit />
+            </ActionIcon>
+          </Tooltip>
+          <Tooltip withArrow position='right' label='Удалить'>
+            <ActionIcon color='red' onClick={() => handleDeleteRow(row)}>
+              <IconTrash />
+            </ActionIcon>
+          </Tooltip>
+        </Box>
+      )}
+    />
   )
 }
 
