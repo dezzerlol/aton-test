@@ -32,9 +32,19 @@ const SignupForm = () => {
     <Stack w='100%' align='center'>
       <h1>Регистрация</h1>
       <form className={styles.auth_form} onSubmit={form.onSubmit(handleSubmit)}>
-        <TextInput placeholder='Введите email' type='email' {...form.getInputProps('email')} />
-        <TextInput placeholder='Введите пароль' type='password' {...form.getInputProps('password')} />
-        <TextInput placeholder='Повторите пароль' type='password' {...form.getInputProps('confirmPassword')} />
+        <TextInput placeholder='Введите email' type='email' aria-label='email' {...form.getInputProps('email')} />
+        <TextInput
+          placeholder='Введите пароль'
+          type='password'
+          aria-label='password'
+          {...form.getInputProps('password')}
+        />
+        <TextInput
+          placeholder='Повторите пароль'
+          type='password'
+          aria-label='confirm-password'
+          {...form.getInputProps('confirmPassword')}
+        />
         <Button loading={isLoading} type='submit'>
           Отправить
         </Button>

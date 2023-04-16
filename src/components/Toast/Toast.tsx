@@ -24,7 +24,7 @@ export const Toast = ({
   useTimeout(close, time)
 
   return (
-    <div className={styles.toast}>
+    <div className={styles.toast} id='toast'>
       <div className={styles.toast_top}>
         <div className={`${styles.toast_title} ${styles[type]}`}>
           {ToastIcons[type]} <span>{title}</span>

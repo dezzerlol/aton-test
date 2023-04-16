@@ -26,8 +26,13 @@ const LoginForm = () => {
     <Stack w='100%' align='center'>
       <h1>Авторизация</h1>
       <form className={styles.auth_form} onSubmit={form.onSubmit(handleSubmit)}>
-        <TextInput placeholder='Введите email' type='text' {...form.getInputProps('email')} />
-        <TextInput placeholder='Введите пароль' type='password' {...form.getInputProps('password')} />
+        <TextInput placeholder='Введите email' aria-label='email' type='text' {...form.getInputProps('email')} />
+        <TextInput
+          placeholder='Введите пароль'
+          aria-label='password'
+          type='password'
+          {...form.getInputProps('password')}
+        />
         <Button loading={isLoading} type='submit'>
           Отправить
         </Button>
