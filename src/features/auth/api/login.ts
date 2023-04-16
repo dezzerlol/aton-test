@@ -5,8 +5,8 @@ import { setToken } from '@/lib/token'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 
-const login = async ({ username, password }: { username: string; password: string }) => {
-  const res = await $fetch.post(AUTH_API_URL + '/login', { username, password })
+const login = async ({ email, password }: { email: string; password: string }) => {
+  const res = await $fetch.post(AUTH_API_URL + '/login', { email, password })
   return res.data
 }
 

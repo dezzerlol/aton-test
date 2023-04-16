@@ -3,8 +3,8 @@ import { AUTH_API_URL } from '@/config'
 import { $fetch } from '@/lib/$fetch'
 import { useMutation } from 'react-query'
 
-const signup = async ({ username, password }: { username: string; password: string }) => {
-  const res = await $fetch.post(AUTH_API_URL + '/register', { username, password })
+const signup = async ({ email, password }: { email: string; password: string }) => {
+  const res = await $fetch.post(AUTH_API_URL + '/register', { email, password })
   return res.data
 }
 

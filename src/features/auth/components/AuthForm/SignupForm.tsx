@@ -1,28 +1,40 @@
-import { Button, Input } from '@mantine/core'
-import React, { useState } from 'react'
+import { AuthForm } from '@/types'
+import { Button, Stack, TextInput } from '@mantine/core'
+import { useForm } from '@mantine/form'
 import { Link } from 'react-router-dom'
 import { useSignup } from '../../api/signup'
 import styles from './styles.module.css'
 
+type SignupAuthForm = AuthForm & {
+  confirmPassword: string
+}
+
 const SignupForm = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const { mutate, isLoading } = useSignup()
+  const form = useForm<SignupAuthForm>({
+    initialValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Некорректный email'),
+      confirmPassword: (value, values) => (value === values.password ? null : 'Пароли не совпадают'),
+    },
+  })
 
-    if (!username || !password) return
-
-    mutate({ username, password })
+  const handleSubmit = (values: SignupAuthForm) => {
+    mutate({ email: values.email, password: values.password })
   }
 
   return (
-    <div className={styles.auth_form_layout}>
-      <h1>Создать аккаунт</h1>
-      <form className={styles.auth_form} onSubmit={handleSubmit}>
-        <Input placeholder='Логин' type='text' onChange={(e) => setUsername(e.currentTarget.value)} />
-        <Input placeholder='Пароль' type='password' onChange={(e) => setPassword(e.currentTarget.value)} />
+    <Stack w='100%' align='center'>
+      <h1>Регистрация</h1>
+      <form className={styles.auth_form} onSubmit={form.onSubmit(handleSubmit)}>
+        <TextInput placeholder='Введите email' type='email' {...form.getInputProps('email')} />
+        <TextInput placeholder='Введите пароль' type='password' {...form.getInputProps('password')} />
+        <TextInput placeholder='Повторите пароль' type='password' {...form.getInputProps('confirmPassword')} />
         <Button loading={isLoading} type='submit'>
           Отправить
         </Button>
@@ -30,7 +42,7 @@ const SignupForm = () => {
       <span>
         Уже зарегистрированы? <Link to='/login'>Войти</Link>
       </span>
-    </div>
+    </Stack>
   )
 }
 

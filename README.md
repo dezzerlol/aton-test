@@ -34,8 +34,10 @@ http://localhost:3000
 
 # Тестовые данные для входа/регистрации
 
-- email: eve.holt@reqres.in
-- password: pistol
+- **email:** eve.holt@reqres.in
+- **password:** pistol
+
+*ReqRes Api поддерживает только определенные данные*
 
 # Библиотеки:
 - React

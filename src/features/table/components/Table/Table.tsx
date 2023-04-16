@@ -5,6 +5,7 @@ import { MantineReactTable, MantineReactTableProps, MRT_ColumnDef, MRT_Row } fro
 import { useCallback, useMemo } from 'react'
 import { useDeleteUser } from '../../api/deleteUser'
 import { useUpdateUser } from '../../api/updateUser'
+import { MRT_Localization_RU } from 'mantine-react-table/locales/ru'
 
 const Table = ({ users, isLoading, skip }: { users?: User[]; isLoading: boolean; skip: number }) => {
   const { mutateAsync: deleteUser, isLoading: isLoadingDelete } = useDeleteUser()
@@ -101,6 +102,7 @@ const Table = ({ users, isLoading, skip }: { users?: User[]; isLoading: boolean;
       enableEditing={true}
       editingMode='modal'
       onEditingRowSave={handleSaveRow}
+      localization={MRT_Localization_RU}
       displayColumnDefOptions={{
         'mrt-row-actions': {
           header: 'Действия',

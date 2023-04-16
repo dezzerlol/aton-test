@@ -7,7 +7,6 @@ export const Portal = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     setIsMounted(true)
-    console.log('test')
     ref.current = document.createElement('div')
 
     document.body.appendChild(ref.current)

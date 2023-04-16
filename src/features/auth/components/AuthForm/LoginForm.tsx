@@ -1,28 +1,33 @@
-import { Button, Input } from '@mantine/core'
-import { useState } from 'react'
+import { AuthForm } from '@/types'
+import { Button, Stack, TextInput } from '@mantine/core'
+import { useForm } from '@mantine/form'
 import { Link } from 'react-router-dom'
 import { useLogin } from '../../api/login'
 import styles from './styles.module.css'
 
 const LoginForm = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const { mutate, isLoading } = useLogin()
+  const form = useForm<AuthForm>({
+    initialValues: {
+      email: '',
+      password: '',
+    },
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Некорректный email'),
+    },
+  })
 
-    if (!username || !password) return
-
-    mutate({ username, password })
+  const handleSubmit = (values: AuthForm) => {
+    mutate({ password: values.password, email: values.email })
   }
 
   return (
-    <div className={styles.auth_form_layout}>
-      <h1>Войти</h1>
-      <form className={styles.auth_form} onSubmit={handleSubmit}>
-        <Input placeholder='Введите логин' type='text' onChange={(e) => setUsername(e.currentTarget.value)} />
-        <Input placeholder='Введите пароль' type='password' onChange={(e) => setPassword(e.currentTarget.value)} />
+    <Stack w='100%' align='center'>
+      <h1>Авторизация</h1>
+      <form className={styles.auth_form} onSubmit={form.onSubmit(handleSubmit)}>
+        <TextInput placeholder='Введите email' type='text' {...form.getInputProps('email')} />
+        <TextInput placeholder='Введите пароль' type='password' {...form.getInputProps('password')} />
         <Button loading={isLoading} type='submit'>
           Отправить
         </Button>
@@ -30,7 +35,7 @@ const LoginForm = () => {
       <span>
         Еще нет аккаунта? <Link to='/signup'>Зарегистрируйтесь</Link>
       </span>
-    </div>
+    </Stack>
   )
 }
 

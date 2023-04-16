@@ -12,5 +12,9 @@ export type User = {
   }
 }
 
-
 export type NewUser = Omit<User, 'id'>
+
+export type AuthForm = {
+  email: string
+  password: string
+}
