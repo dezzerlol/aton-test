@@ -40,8 +40,10 @@ http://localhost:3000
 *ReqRes Api поддерживает только определенные данные*
 
 # Библиотеки:
+- Vite
 - React
 - Typescript
 - State: react-query
 - Стили: mantine
 - Таблица: mantine-react-table && TanStack Table
+- Тесты: Vitest + CI/CD Pipeline Github Actions
