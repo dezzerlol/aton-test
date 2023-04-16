@@ -64,6 +64,7 @@ const Table = ({ users, isLoading, skip }: { users?: User[]; isLoading: boolean;
     []
   )
 
+  // функция обновления строки с пользователем
   const handleSaveRow: MantineReactTableProps<User>['onEditingRowSave'] = async ({ exitEditingMode, values, row }) => {
     const updatedUser = {
       ...values,
@@ -78,6 +79,7 @@ const Table = ({ users, isLoading, skip }: { users?: User[]; isLoading: boolean;
     exitEditingMode()
   }
 
+  // функция удаления с подтверждением строки пользователя
   const handleDeleteRow = useCallback(
     async (row: MRT_Row<User>) => {
       if (!confirm(`Вы действительно хотите удалить ${row.getValue('firstName')}?`)) {
@@ -103,11 +105,6 @@ const Table = ({ users, isLoading, skip }: { users?: User[]; isLoading: boolean;
       editingMode='modal'
       onEditingRowSave={handleSaveRow}
       localization={MRT_Localization_RU}
-      displayColumnDefOptions={{
-        'mrt-row-actions': {
-          header: 'Действия',
-        },
-      }}
       renderRowActions={({ row, table }) => (
         <Box sx={{ display: 'flex', gap: '16px' }}>
           <Tooltip withArrow position='left' label='Изменить'>

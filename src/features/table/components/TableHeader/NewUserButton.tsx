@@ -1,5 +1,5 @@
 import { NewUser } from '@/types'
-import { Box, Button, Group, Modal, NumberInput, Select, Text, TextInput } from '@mantine/core'
+import { Box, Button, Group, Modal, NativeSelect, NumberInput, Select, Text, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { useState } from 'react'
 import { useCreateUser } from '../../api/createUser'
@@ -28,6 +28,7 @@ const NewUserButton = () => {
 
   const handleModal = () => {
     setIsOpened((prev) => !prev)
+    form.reset()
   }
 
   const handleAdd = async (values: NewUser) => {
@@ -51,42 +52,32 @@ const NewUserButton = () => {
           component='form'
           onSubmit={form.onSubmit(handleAdd)}
           sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <TextInput label='Имя' placeholder='Введите имя' withAsterisk {...form.getInputProps('firstName')} />
-          <TextInput label='Фамилия' placeholder='Введите фамилию' withAsterisk {...form.getInputProps('lastName')} />
-          <Select
+          <TextInput label='Имя' placeholder='Введите имя' required {...form.getInputProps('firstName')} />
+          <TextInput label='Фамилия' placeholder='Введите фамилию' required {...form.getInputProps('lastName')} />
+          <NativeSelect
             label='Пол'
             data={['Мужской', 'Женский']}
             placeholder='Выберите пол'
-            withAsterisk
+            required
             {...form.getInputProps('gender')}
           />
-          <NumberInput
+          <TextInput
+            type='number'
             min={0}
             label='Возраст'
             placeholder='Введите возраст'
-            withAsterisk
+            required
             {...form.getInputProps('age')}
           />
-          <TextInput label='Email' placeholder='Введите email' {...form.getInputProps('email')} />
+          <TextInput label='Email' placeholder='Введите email' required {...form.getInputProps('email')} />
           <NumberInput
             label='Номер телефона'
             placeholder='Введите номер телефона'
-            withAsterisk
             hideControls
             {...form.getInputProps('phone')}
           />
-          <TextInput
-            label='Компания'
-            placeholder='Введите компанию'
-            withAsterisk
-            {...form.getInputProps('company.name')}
-          />
-          <TextInput
-            label='Должность'
-            placeholder='Введите должность'
-            withAsterisk
-            {...form.getInputProps('company.title')}
-          />
+          <TextInput label='Компания' placeholder='Введите компанию' {...form.getInputProps('company.name')} />
+          <TextInput label='Должность' placeholder='Введите должность' {...form.getInputProps('company.title')} />
 
           <Group position='right'>
             <Button variant='subtle' onClick={handleModal}>
