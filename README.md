@@ -1,5 +1,6 @@
 [Задание](https://github.com/dezzerlol/aton-test/blob/master/test_frontend.pdf)
 
+[![CI](https://github.com/dezzerlol/aton-test/actions/workflows/test.yml/badge.svg)](https://github.com/dezzerlol/aton-test/actions/workflows/test.yml)
 # Локальный запуск проекта
 
 ## С использованием Docker:
