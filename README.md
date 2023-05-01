@@ -1,5 +1,6 @@
 [Задание](https://github.com/dezzerlol/aton-test/blob/master/test_frontend.pdf)
 
+[![CI](https://github.com/dezzerlol/aton-test/actions/workflows/test.yml/badge.svg)](https://github.com/dezzerlol/aton-test/actions/workflows/test.yml)
 # Локальный запуск проекта
 
 ## С использованием Docker:
@@ -40,11 +41,14 @@ http://localhost:3000
 *ReqRes Api поддерживает только определенные данные*
 
 # Библиотеки:
+- Vite
 - React
 - Typescript
 - State: react-query
 - Стили: mantine
 - Таблица: mantine-react-table && TanStack Table
+- Тесты: Vitest + CI/CD Pipeline Github Actions
+
 
 # Архитектура
 [Bulletproof React](https://github.com/alan2207/bulletproof-react)
