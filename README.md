@@ -45,3 +45,6 @@ http://localhost:3000
 - State: react-query
 - Стили: mantine
 - Таблица: mantine-react-table && TanStack Table
+
+# Архитектура
+[Bulletproof React](https://github.com/alan2207/bulletproof-react)

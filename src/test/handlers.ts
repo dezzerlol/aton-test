@@ -2,6 +2,7 @@ import { AUTH_API_URL } from '@/config'
 import { rest } from 'msw'
 
 export const handlers = [
+  // mock login route
   rest.post(`${AUTH_API_URL}/login`, (req, res, ctx) => {
     const { email, password } = req.body as any
 
@@ -21,6 +22,7 @@ export const handlers = [
     )
   }),
 
+  // mock register route
   rest.post(`${AUTH_API_URL}/register`, (req, res, ctx) => {
     const { email, password } = req.body as any
 

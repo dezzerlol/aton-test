@@ -7,7 +7,7 @@ import { server } from './server'
 expect.extend(matchers)
 
 beforeAll(() => {
-  // Enable the mocking in tests.
+  // start server
   server.listen()
 })
 
@@ -19,6 +19,6 @@ afterEach(() => {
 })
 
 afterAll(() => {
-  // Clean up once the tests are done.
+  // close server after all 
   server.close()
 })
