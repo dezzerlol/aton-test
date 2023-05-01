@@ -1,6 +1,9 @@
-[Задание](https://github.com/dezzerlol/aton-test/blob/master/test_frontend.pdf)
-
 [![CI](https://github.com/dezzerlol/aton-test/actions/workflows/test.yml/badge.svg)](https://github.com/dezzerlol/aton-test/actions/workflows/test.yml)
+
+[Задание](https://github.com/dezzerlol/aton-test/blob/master/test_frontend.pdf)
+# Live
+[aton-test.vercel.app](aton-test.vercel.app)
+
 # Локальный запуск проекта
 
 ## С использованием Docker:
