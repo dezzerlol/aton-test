@@ -2,7 +2,7 @@
 
 [Задание](https://github.com/dezzerlol/aton-test/blob/master/test_frontend.pdf)
 # Live
-[aton-test.vercel.app](aton-test.vercel.app)
+[https://aton-test.vercel.app](https://aton-test.vercel.app)
 
 # Локальный запуск проекта
 
